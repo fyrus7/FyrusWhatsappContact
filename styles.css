@@ -1,0 +1,250 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #E8ECEF;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background-color: #37474F;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.header-content {
+    display: inline-block;
+}
+
+/* Profile Pic */
+.profile-pic {
+    width: 40%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Image style */
+.client-pic {
+  max-width: 150px;
+  height: auto;
+}
+
+/* Show <br> on small screen only */
+.mobile-br-move {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .logo-row {
+    flex-direction: column;
+  }
+
+  .mobile-br-move {
+    display: block;
+  }
+}
+
+
+
+/* Text Container (Mobile-First) */
+.text-container {
+    width: 100%; /* Make the container full width by default */
+    max-width: 100%; /* Ensure it doesn't shrink */
+    margin: 10px auto; /* Center it with minimal margins */
+    padding: 0 20px; /* Keep the left/right padding */
+}
+
+.text-container p {
+    text-align: left;
+    font-size: 16px;
+    color: #455A64;
+    margin: 0;
+    padding: 20px 10px; /* top bottom & left right padding */
+}
+.text-container .p2 {
+    font-size: 20px;
+    text-align: center; /* Left-aligned */
+    padding-bottom: 0;
+}
+
+/* Responsive adjustments for desktops */
+@media (min-width: 1200px) {
+    .text-container {
+        max-width: 1000px; /* Increase max-width for desktops */
+        margin: 10px auto;
+    }
+
+    .text-box {
+        width: 50%;
+        max-width: 1000px;
+    }
+
+    .text-button {
+        padding: 0 100px; /* More padding for larger screens */
+    }
+
+    .choose-text {
+        font-size: 22px; /* Slightly larger text for desktops */
+    }
+
+    .hr-container {
+        width: 40%; /* Even narrower for desktops */
+    }
+}
+
+/* Text Box */
+.client-box {
+    border: 2px solid #607D8B;
+    padding: 20px 30px;
+    border-radius: 5px;
+    background-color: transpprent; /*#607D8B; /* #455A64; */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.client-wrapper {
+  padding: 0 15px; /* default: mobile screen ada ruang kiri kanan */
+}
+
+@media (min-width: 768px) {
+  .client-wrapper {
+    padding: 0; /* besar: buang padding sebab ada margin auto */
+  }
+}
+
+
+.text-box p {
+    text-align: left;
+    color: white;
+    font-size: 16px;
+}
+
+/* Text Button Section */
+.text-button {
+    margin-top: 20px;
+    text-align: center; /* Center content inside the container */
+    margin-bottom: -25px;
+    padding: 0 20px; /* Add some padding for mobile */
+}
+
+/* Responsive .choose-text */
+.choose-text {
+    font-size: 18px; /* Base font size for mobile */
+    font-weight: bold;
+    color: #37474F;
+    margin: 0;
+    padding-bottom: 20px;
+}
+h2.choose-text {
+    font-size: clamp(18px, 4vw, 28px); /* Responsive font size */
+    font-weight: bold;
+    color: #37474F;
+    text-align: center;
+    margin: 0;
+}
+
+/* Horizontal Line Container */
+.hr-container {
+    width: 60%; /* Full width on mobile */
+    margin: 10px auto; /* Center the container with auto margins */
+}
+
+/* Line Break */
+.line-break {
+    width: 100%; /* Full width on mobile */
+    border: none;
+    border-top: 1px solid #455A64;
+    margin: 10px 0;
+}
+
+/* Buttons Section */
+.buttons-section {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.btn {
+    background-color: #455A64;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    width: 210px;
+    height: 40px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1C313A;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #E8ECEF;
+    padding: 20px;
+    color: #455A64;
+    text-align: center;
+}
+
+.social-links a {
+    color: #455A64;
+    margin: 0 10px;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #1C313A;
+}
+
+.copyright {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #455A64;
+}
+
+/* By default, <br> for mobile screens (smaller screens) */
+.mobile-br {
+    display: inline;
+}
+
+/* On larger screens, hide the <br> */
+@media (min-width: 768px) {
+    .mobile-br {
+        display: none;
+    }
+}
+
+
+/* Mobile-Specific (e.g., 600px and below) */
+@media (max-width: 600px) {
+    .mobile-text {
+        display: block;
+    }
+}
