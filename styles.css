@@ -30,7 +30,7 @@ header {
 
 /* Profile Pic */
 .profile-pic {
-    width: 40%;
+    width: 100%;
     max-width: 500px;
     height: auto;
     display: block;
