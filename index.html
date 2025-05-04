@@ -14,31 +14,32 @@
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="Fyrus Photography">
 	<meta property="og:description" content="Whatsapp Form">
-	<meta property="og:image" content="https://app.iamfyrus.com/media/whatsapp.jpg">
+	<meta property="og:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
 	
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta property="twitter:domain" content="app.iamfyrus.com/ws">
+	<meta property="twitter:domain" content="ws.iamfyrus.com">
 	<meta property="twitter:url" content="https://ws.iamfyrus.com">
 	<meta name="twitter:title" content="Fyrus Photography">
 	<meta name="twitter:description" content="Whatsapp Form">
-	<meta name="twitter:image" content="https://app.iamfyrus.com/media/whatsapp.jpg">
+	<meta name="twitter:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
 	
 	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/favicon-home/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-home/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-home/favicon-16x16.png">
-	<link rel="shortcut icon" href="/favicon-home/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="shortcut icon" href="/favicon/favicon.ico">
 	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<link rel="stylesheet" href="styles.css?v=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	<link rel="stylesheet" href="styles.css?v=1.5">
+	
 
 </head>
 <body>
     <header>
         <div class="header-content">
-            <img src="https://app.iamfyrus.com/media/FyrusStripe.png" alt="Profile Picture" class="profile-pic">
+            <img src="/media/FyrusStripe.png" alt="Profile Picture" class="profile-pic">
         </div>
 		<br><br>
     </header>
@@ -49,8 +50,11 @@
 <br>
   <form id="whatsappForm" onsubmit="openWhatsApp(event)">
     <input type="text" id="nama" placeholder="Nama..." required>
+	<br>
     <input type="text" id="majlis" placeholder="Jenis majlis / acara / perkara..." required>
+	<br>
     <input type="text" id="tarikh" placeholder="Tarikh..." required>
+	<br>
     <input type="text" id="lokasi" placeholder="Lokasi..." required>
     <br><br>
     <button type="submit" class="btn">Hantar</button>
@@ -58,6 +62,13 @@
 </div>
 
 	<footer>
+	<div class="social-links">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://api.whatsapp.com/send?text=Fyrus Photography%20https://ws.iamfyrus.com" target="_blank" target="_blank"><i class="fab fa-whatsapp"></i></a>
+			<a href="https://telegram.me/share/url?url=https://ws.iamfyrus.com" target="_blank" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://x.com/intent/tweet?url=https://ws.iamfyrus.com&text=Check This Awesome App" target="_blank" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+		<br>
 	<!-- Copyright text -->
 	<div class="copyright">
 	&copy; <span id="year"></span> Fyrus Photography. All rights reserved.
@@ -90,35 +101,7 @@
 }
 </script>
 
-      <style>
-        .whatsapp-form {
-  text-align: center; /* Center the form */
-  margin: 20px 0; /* Add margin for spacing */
-}
-.whatsapp-form h4 {
-  margin-bottom: 5px; /* Space between header and input box */
-}
-.whatsapp-form input {
-  width: 90%; /* Responsive width */
-  max-width: 600px; /* Max width for larger screens */
-  padding: 10px; /* Add padding */
-  margin-bottom: 10px; /* Space between input and button */
-  border: 2px solid #455A64; /* Border color */
-  border-radius: 5px; /* Rounded corners */
-}
-.whatsapp-form button {
-  background-color: #455A64; /* Button color */
-  color: white; /* Text color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Add padding */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor */
-}
-.whatsapp-form button:hover {
-  background-color: #1C313A; /* Darker on hover */
-}
 
-      </style>
 
       </body>
 </html>
