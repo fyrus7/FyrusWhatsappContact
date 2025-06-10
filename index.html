@@ -24,15 +24,13 @@
 	<meta name="twitter:description" content="Whatsapp Form">
 	<meta name="twitter:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
 	
-	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
-
 	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
 	<link rel="shortcut icon" href="/favicon/favicon.ico">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-	<link rel="stylesheet" href="styles.css?v=1.7">
+	<link rel="stylesheet" href="styles.css?v=1.8">
 </head>
 
 <body>
@@ -47,34 +45,37 @@
     <div class="whatsapp-form">
         <h4>WhatsApp Form</h4>
         <br>
-<form id="whatsappForm" onsubmit="openWhatsApp(event)">
-  <input type="text" id="nama" placeholder="Nama..." required><br>
+        <form id="whatsappForm" onsubmit="openWhatsApp(event)">
+            <input type="text" id="nama" placeholder="Nama..." required><br>
 
-  <select id="majlis" required onchange="toggleMajlisLain()" style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
-    <option value="" disabled selected>Pilih jenis majlis...</option>
-    <option value="Harijadi">Harijadi</option>
-    <option value="Bertunang">Bertunang</option>
-    <option value="Nikah">Nikah</option>
-    <option value="Sanding">Sanding</option>
-    <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
-    <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
-    <option value="Outdoor">Outdoor</option>
-    <option value="Convo">Convo</option>
-    <option value="Personal Portrait">Personal Portrait</option>
-    <option value="Lain-lain">Lain-lain</option>
-  </select><br>
+            <!-- dropdown majlis -->
+            <select id="majlis" required onchange="toggleMajlisLain()"
+                style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
+                <option value="" disabled selected>Event type...</option>
+                <option value="Harijadi">Harijadi</option>
+                <option value="Bertunang">Bertunang</option>
+                <option value="Nikah">Nikah</option>
+                <option value="Sanding">Sanding</option>
+                <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
+                <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
+                <option value="Outdoor">Outdoor</option>
+                <option value="Convo">Convo</option>
+                <option value="Personal Portrait">Personal Portrait</option>
+                <option value="Lain-lain">Lain-lain</option>
+            </select><br>
 
-  <!-- Input lain-lain (hidden by default) -->
-  <div id="majlisLainWrapper" style="display:none; text-align:center;">
-    <input type="text" id="majlisLain" placeholder="Nyatakan..." style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
-  </div>
+            <!-- wrapper untuk input "Nyatakan..." + br -->
+            <div id="majlisLainWrapper" style="display: none; text-align: center;">
+              <input type="text" id="majlisLain" placeholder="Nyatakan..."
+                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
+              <br>
+            </div>
 
-  <input type="text" id="tarikh" placeholder="Tarikh..." required><br>
-  <input type="text" id="lokasi" placeholder="Lokasi..." required><br><br>
+            <input type="text" id="tarikh" placeholder="Tarikh..." required><br>
+            <input type="text" id="lokasi" placeholder="Lokasi..." required><br><br>
 
-  <button type="submit" class="btn">Hantar</button>
-</form>
-
+            <button type="submit" class="btn">Hantar</button>
+        </form>
     </div>
 
     <footer>
@@ -95,12 +96,13 @@
 
         function toggleMajlisLain() {
             const select = document.getElementById('majlis');
+            const wrapper = document.getElementById('majlisLainWrapper');
             const input = document.getElementById('majlisLain');
             if (select.value === 'Lain-lain') {
-                input.style.display = 'block';
+                wrapper.style.display = 'block';
                 input.required = true;
             } else {
-                input.style.display = 'none';
+                wrapper.style.display = 'none';
                 input.required = false;
             }
         }
@@ -108,14 +110,13 @@
         function openWhatsApp(event) {
             event.preventDefault();
             const nama = document.getElementById('nama').value;
-            const majlisSelect = document.getElementById('majlis').value;
+            const majlisVal = document.getElementById('majlis').value;
             const majlisLain = document.getElementById('majlisLain').value;
+            const finalMajlis = majlisVal === 'Lain-lain' ? majlisLain : majlisVal;
             const tarikh = document.getElementById('tarikh').value;
             const lokasi = document.getElementById('lokasi').value;
 
-            const majlis = (majlisSelect === 'Lain-lain') ? majlisLain : majlisSelect;
-
-            const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${majlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
+            const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
             const phoneNumber = '60133340224';
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
