@@ -1,124 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- HTML Meta Tags -->
+	<title>Fyrus Photography</title>
+	<meta name="description" content="Whatsapp Me">
+	
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://ws.iamfyrus.com">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Fyrus Photography">
+	<meta property="og:description" content="Whatsapp Form">
+	<meta property="og:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
+	
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="ws.iamfyrus.com">
+	<meta property="twitter:url" content="https://ws.iamfyrus.com">
+	<meta name="twitter:title" content="Fyrus Photography">
+	<meta name="twitter:description" content="Whatsapp Form">
+	<meta name="twitter:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
+	
+	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
-  <title>Fyrus Photography</title>
-  <meta name="description" content="Whatsapp Me">
-
-  <!-- Open Graph -->
-  <meta property="og:url" content="https://ws.iamfyrus.com">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Fyrus Photography">
-  <meta property="og:description" content="Whatsapp Form">
-  <meta property="og:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="ws.iamfyrus.com">
-  <meta property="twitter:url" content="https://ws.iamfyrus.com">
-  <meta name="twitter:title" content="Fyrus Photography">
-  <meta name="twitter:description" content="Whatsapp Form">
-  <meta name="twitter:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
-
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-  <link rel="shortcut icon" href="/favicon/favicon.ico">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=1.6">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="shortcut icon" href="/favicon/favicon.ico">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	<link rel="stylesheet" href="styles.css?v=1.7">
 </head>
+
 <body>
-  <header>
-    <div class="header-content">
-      <img src="/media/fyruschibi.png" alt="Profile Picture" class="profile-pic">
+    <header>
+        <div class="header-content">
+            <img src="/media/fyruschibi.png" alt="Profile Picture" class="profile-pic">
+        </div>
+		<br><br>
+    </header>
+
+    <!-- WhatsApp Contact Form -->
+    <div class="whatsapp-form">
+        <h4>WhatsApp Form</h4>
+        <br>
+        <form id="whatsappForm" onsubmit="openWhatsApp(event)">
+            <input type="text" id="nama" placeholder="Nama..." required><br>
+
+            <select id="majlis" required onchange="toggleMajlisLain()" style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
+                <option value="" disabled selected>Event type...</option>
+                <option value="Harijadi">Harijadi</option>
+                <option value="Bertunang">Bertunang</option>
+                <option value="Nikah">Nikah</option>
+                <option value="Sanding">Sanding</option>
+                <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
+                <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
+                <option value="Outdoor">Outdoor</option>
+                <option value="Convo">Convo</option>
+                <option value="Personal Portrait">Personal Portrait</option>
+                <option value="Lain-lain">Lain-lain</option>
+            </select><br>
+
+            <input type="text" id="majlisLain" placeholder="Nyatakan..." style="display: none;"><br>
+
+            <input type="text" id="tarikh" placeholder="Tarikh..." required><br>
+            <input type="text" id="lokasi" placeholder="Lokasi..." required><br><br>
+
+            <button type="submit" class="btn">Hantar</button>
+        </form>
     </div>
-    <br><br>
-  </header>
 
-  <!-- WhatsApp Contact Form -->
-  <div class="whatsapp-form">
-    <h4>WhatsApp Form</h4>
-    <br>
-    <form id="whatsappForm" onsubmit="openWhatsApp(event)">
-      <input type="text" id="nama" placeholder="Nama..." required>
-      <br>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://api.whatsapp.com/send?text=Fyrus Photography%20https://ws.iamfyrus.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://telegram.me/share/url?url=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://x.com/intent/tweet?url=https://portfolio.iamfyrus.com&text=Check This Photographer Portfolio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+        <br>
+        <div class="copyright">
+            &copy; <span id="year"></span> Fyrus Photography. All rights reserved.
+        </div>
+    </footer>
 
-      <select id="majlis" required onchange="toggleMajlisLain()" style="width: 100%; padding: 10px; margin-top: 10px;">
-        <option value="" disabled selected>Event type</option>
-        <option value="Harijadi">Harijadi</option>
-        <option value="Bertunang">Bertunang</option>
-        <option value="Nikah">Nikah</option>
-        <option value="Sanding">Sanding</option>
-        <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
-        <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
-        <option value="Outdoor">Outdoor</option>
-        <option value="Convo">Convo</option>
-        <option value="Personal Portrait">Personal Portrait</option>
-        <option value="Lain-lain">Lain-lain</option>
-      </select>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-      <input type="text" id="majlisLain" placeholder="Nyatakan..." style="display: none; margin-top: 10px; width: 100%; padding: 10px;">
-      <br>
+        function toggleMajlisLain() {
+            const select = document.getElementById('majlis');
+            const input = document.getElementById('majlisLain');
+            if (select.value === 'Lain-lain') {
+                input.style.display = 'block';
+                input.required = true;
+            } else {
+                input.style.display = 'none';
+                input.required = false;
+            }
+        }
 
-      <input type="text" id="tarikh" placeholder="Tarikh..." required>
-      <br>
-      <input type="text" id="lokasi" placeholder="Lokasi..." required>
-      <br><br>
+        function openWhatsApp(event) {
+            event.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const majlisSelect = document.getElementById('majlis').value;
+            const majlisLain = document.getElementById('majlisLain').value;
+            const tarikh = document.getElementById('tarikh').value;
+            const lokasi = document.getElementById('lokasi').value;
 
-      <button type="submit" class="btn">Hantar</button>
-    </form>
-  </div>
+            const majlis = (majlisSelect === 'Lain-lain') ? majlisLain : majlisSelect;
 
-  <footer>
-    <div class="social-links">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://api.whatsapp.com/send?text=Fyrus Photography%20https://ws.iamfyrus.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://telegram.me/share/url?url=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://x.com/intent/tweet?url=https://portfolio.iamfyrus.com&text=Check This Photographer Portfolio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    </div>
-    <br>
-    <div class="copyright">
-      &copy; <span id="year"></span> Fyrus Photography. All rights reserved.
-    </div>
-  </footer>
+            const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${majlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
+            const phoneNumber = '60133340224';
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function toggleMajlisLain() {
-      const majlis = document.getElementById("majlis");
-      const majlisLain = document.getElementById("majlisLain");
-      if (majlis.value === "Lain-lain") {
-        majlisLain.style.display = "block";
-        majlisLain.setAttribute("required", true);
-      } else {
-        majlisLain.style.display = "none";
-        majlisLain.removeAttribute("required");
-        majlisLain.value = "";
-      }
-    }
-
-    function openWhatsApp(event) {
-      event.preventDefault();
-
-      const nama = document.getElementById('nama').value;
-      const majlis = document.getElementById('majlis').value;
-      const majlisLain = document.getElementById('majlisLain').value;
-      const tarikh = document.getElementById('tarikh').value;
-      const lokasi = document.getElementById('lokasi').value;
-
-      const finalMajlis = (majlis === "Lain-lain") ? majlisLain : majlis;
-
-      const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
-      const phoneNumber = '60133340224';
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-      window.open(whatsappUrl, '_blank');
-    }
-  </script>
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
