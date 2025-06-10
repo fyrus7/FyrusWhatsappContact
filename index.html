@@ -49,29 +49,47 @@
             <input type="text" id="nama" placeholder="Nama..." required><br>
 
             <!-- dropdown majlis -->
-            <select id="majlis" required onchange="toggleMajlisLain()"
+            <select id="majlis" required onchange="onMajlisChange()"
                 style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
-                <option value="" disabled selected>Event type...</option>
-                <option value="Harijadi">Harijadi</option>
-                <option value="Bertunang">Bertunang</option>
-                <option value="Nikah">Nikah</option>
-                <option value="Sanding">Sanding</option>
-                <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
-                <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
-                <option value="Outdoor">Outdoor</option>
-                <option value="Convo">Convo</option>
-                <option value="Personal Portrait">Personal Portrait</option>
-                <option value="Lain-lain">Lain-lain</option>
+              <option value="" disabled selected>Event type...</option>
+              <option value="Harijadi">Harijadi</option>
+              <option value="Bertunang">Bertunang</option>
+              <option value="Nikah">Nikah</option>
+              <option value="Sanding">Sanding</option>
+              <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
+              <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
+              <option value="Outdoor">Outdoor</option>
+              <option value="Convo">Convo</option>
+              <option value="Personal Portrait">Personal Portrait</option>
+              <option value="Lain-lain">Lain-lain</option>
             </select><br>
 
-            <!-- wrapper untuk input "Nyatakan..." + br -->
+            <!-- input Lain-lain -->
             <div id="majlisLainWrapper" style="display: none; text-align: center;">
               <input type="text" id="majlisLain" placeholder="Nyatakan..."
                      style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
               <br>
             </div>
 
-            <input type="text" id="tarikh" placeholder="Tarikh..." required><br>
+            <!-- single date picker -->
+            <div id="tarikhSingleWrapper" style="text-align: center;">
+              <input type="date" id="tarikhSingle" required
+                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
+              <br>
+            </div>
+
+            <!-- two date pickers for 2-day event -->
+            <div id="tarikhMultiWrapper" style="display: none; text-align: center;">
+              <input type="date" id="tarikhNikah" required
+                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 8px; border: 2px solid #455A64; border-radius: 5px;"
+                     placeholder="Tarikh Nikah">
+              <br>
+              <input type="date" id="tarikhSanding" required
+                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;"
+                     placeholder="Tarikh Sanding">
+              <br>
+            </div>
+
             <input type="text" id="lokasi" placeholder="Lokasi..." required><br><br>
 
             <button type="submit" class="btn">Hantar</button>
@@ -92,36 +110,49 @@
     </footer>
 
     <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-        function toggleMajlisLain() {
-            const select = document.getElementById('majlis');
-            const wrapper = document.getElementById('majlisLainWrapper');
-            const input = document.getElementById('majlisLain');
-            if (select.value === 'Lain-lain') {
-                wrapper.style.display = 'block';
-                input.required = true;
-            } else {
-                wrapper.style.display = 'none';
-                input.required = false;
-            }
+      function onMajlisChange() {
+        const val = document.getElementById('majlis').value;
+        // Lain-lain
+        document.getElementById('majlisLainWrapper').style.display = val === 'Lain-lain' ? 'block' : 'none';
+        document.getElementById('majlisLain').required = (val === 'Lain-lain');
+
+        // Nikah & Sanding (2 hari)
+        const multi = (val === 'Nikah & Sanding (2 hari)');
+        document.getElementById('tarikhMultiWrapper').style.display = multi ? 'block' : 'none';
+        document.getElementById('tarikhNikah').required = multi;
+        document.getElementById('tarikhSanding').required = multi;
+
+        // Single date for all other except multi
+        document.getElementById('tarikhSingleWrapper').style.display = multi ? 'none' : 'block';
+        document.getElementById('tarikhSingle').required = !multi;
+      }
+
+      function openWhatsApp(e) {
+        e.preventDefault();
+        const nama = document.getElementById('nama').value;
+        const majlisVal = document.getElementById('majlis').value;
+        const majlisLain = document.getElementById('majlisLain').value;
+        let finalMajlis = majlisVal;
+        if (majlisVal === 'Lain-lain') finalMajlis = majlisLain;
+
+        let tarikhStr = '';
+        if (majlisVal === 'Nikah & Sanding (2 hari)') {
+          const nikah = document.getElementById('tarikhNikah').value;
+          const sanding = document.getElementById('tarikhSanding').value;
+          tarikhStr = `Tarikh Nikah: ${nikah}\nTarikh Sanding: ${sanding}`;
+        } else {
+          const single = document.getElementById('tarikhSingle').value;
+          tarikhStr = `Tarikh: ${single}`;
         }
 
-        function openWhatsApp(event) {
-            event.preventDefault();
-            const nama = document.getElementById('nama').value;
-            const majlisVal = document.getElementById('majlis').value;
-            const majlisLain = document.getElementById('majlisLain').value;
-            const finalMajlis = majlisVal === 'Lain-lain' ? majlisLain : majlisVal;
-            const tarikh = document.getElementById('tarikh').value;
-            const lokasi = document.getElementById('lokasi').value;
-
-            const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
-            const phoneNumber = '60133340224';
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-            window.open(whatsappUrl, '_blank');
-        }
+        const lokasi = document.getElementById('lokasi').value;
+        const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\n${tarikhStr}\nLokasi: ${lokasi}`;
+        const phone = '60133340224';
+        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      }
     </script>
 </body>
 </html>
