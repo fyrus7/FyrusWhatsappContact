@@ -109,3 +109,24 @@ footer {
 		.whatsapp-form button:hover {
 		background-color: #1C313A; /* Darker on hover */
 		}
+
+
+/* Pastikan dropdown & date picker pun putih */
+.whatsapp-form select,
+.whatsapp-form input[type="date"] {
+  background-color: #ffffff;   /* putih */
+  color: #000000;              /* teks hitam */
+  /* hilangkan kelabu native di WebKit */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Kalau nak arrow dropdown custom position */
+.whatsapp-form select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4L2 0zM2 5L0 3h4l-2 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 10px;
+}
+
