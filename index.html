@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- HTML Meta Tags -->
   <title>Fyrus Photography</title>
   <meta name="description" content="Whatsapp Me">
 
-  <!-- Facebook Meta Tags -->
+  <!-- Open Graph -->
   <meta property="og:url" content="https://ws.iamfyrus.com">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Fyrus Photography">
   <meta property="og:description" content="Whatsapp Form">
   <meta property="og:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
 
-  <!-- Twitter Meta Tags -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:domain" content="ws.iamfyrus.com">
   <meta property="twitter:url" content="https://ws.iamfyrus.com">
@@ -24,41 +22,16 @@
   <meta name="twitter:description" content="Whatsapp Form">
   <meta name="twitter:image" content="https://ws.iamfyrus.com/media/whatsapp.jpg">
 
-  <!-- Icons -->
+  <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon/favicon.ico">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=1.5">
-
-  <!-- Gaya input dan select -->
-  <style>
-    .whatsapp-form input,
-    .whatsapp-form select {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      font-family: inherit;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      margin-bottom: 10px;
-      appearance: none;
-      background-color: white;
-    }
-
-    .whatsapp-form select {
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4L2 0zM2 5L0 3h4l-2 2z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      background-size: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css?v=1.6">
 </head>
 <body>
-
   <header>
     <div class="header-content">
       <img src="/media/fyruschibi.png" alt="Profile Picture" class="profile-pic">
@@ -73,8 +46,9 @@
     <form id="whatsappForm" onsubmit="openWhatsApp(event)">
       <input type="text" id="nama" placeholder="Nama..." required>
       <br>
-      <select id="majlis" required>
-        <option value="" disabled selected>Pilih jenis majlis...</option>
+
+      <select id="majlis" required onchange="toggleMajlisLain()" style="width: 100%; padding: 10px; margin-top: 10px;">
+        <option value="" disabled selected>Event type</option>
         <option value="Harijadi">Harijadi</option>
         <option value="Bertunang">Bertunang</option>
         <option value="Nikah">Nikah</option>
@@ -86,11 +60,15 @@
         <option value="Personal Portrait">Personal Portrait</option>
         <option value="Lain-lain">Lain-lain</option>
       </select>
+
+      <input type="text" id="majlisLain" placeholder="Nyatakan..." style="display: none; margin-top: 10px; width: 100%; padding: 10px;">
       <br>
+
       <input type="text" id="tarikh" placeholder="Tarikh..." required>
       <br>
       <input type="text" id="lokasi" placeholder="Lokasi..." required>
       <br><br>
+
       <button type="submit" class="btn">Hantar</button>
     </form>
   </div>
@@ -110,22 +88,37 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 
-  <script>
+    function toggleMajlisLain() {
+      const majlis = document.getElementById("majlis");
+      const majlisLain = document.getElementById("majlisLain");
+      if (majlis.value === "Lain-lain") {
+        majlisLain.style.display = "block";
+        majlisLain.setAttribute("required", true);
+      } else {
+        majlisLain.style.display = "none";
+        majlisLain.removeAttribute("required");
+        majlisLain.value = "";
+      }
+    }
+
     function openWhatsApp(event) {
       event.preventDefault();
+
       const nama = document.getElementById('nama').value;
       const majlis = document.getElementById('majlis').value;
+      const majlisLain = document.getElementById('majlisLain').value;
       const tarikh = document.getElementById('tarikh').value;
       const lokasi = document.getElementById('lokasi').value;
 
-      const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${majlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
+      const finalMajlis = (majlis === "Lain-lain") ? majlisLain : majlis;
+
+      const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\nTarikh: ${tarikh}\nLokasi: ${lokasi}`;
       const phoneNumber = '60133340224';
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
       window.open(whatsappUrl, '_blank');
     }
   </script>
-
 </body>
 </html>
