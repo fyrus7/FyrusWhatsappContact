@@ -136,41 +136,46 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- ... [head dan body hingga akhir form anda kekal sama, tiada perubahan di atas] ... -->
 
-    function onMajlisChange() {
-      const val = document.getElementById('majlis').value;
-      // Nyatakan
-      document.getElementById('majlisLainWrapper').style.display = val === 'Lain-lain' ? 'block' : 'none';
-      document.getElementById('majlisLain').required = (val === 'Lain-lain');
-      // Dua tarikh
-      const isTwoDay = val === 'Nikah & Sanding (2 hari)';
-      document.getElementById('tarikhMultiWrapper').style.display = isTwoDay ? 'block' : 'none';
-      document.getElementById('tarikhNikah').required = isTwoDay;
-      document.getElementById('tarikhSanding').required = isTwoDay;
-      // Tarikh tunggal
-      document.getElementById('tarikhSingleWrapper').style.display = isTwoDay ? 'none' : 'block';
-      document.getElementById('tarikhSingle').required = !isTwoDay;
-    }
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    function openWhatsApp(event) {
-	    event.preventDefault();
-	    
-	    const nama = document.getElementById('nama').value;
-	    const majlisSelect = document.getElementById('majlis').value;
-	    const majlisLain = document.getElementById('majlisLain').value;
-	    const lokasi = document.getElementById('lokasi').value;
-	    
-	    const majlis = (majlisSelect === 'Lain-lain') ? majlisLain : majlisSelect;
+  function onMajlisChange() {
+    const val = document.getElementById('majlis').value;
+
+    // Nyatakan jika Lain-lain
+    document.getElementById('majlisLainWrapper').style.display = val === 'Lain-lain' ? 'block' : 'none';
+    document.getElementById('majlisLain').required = (val === 'Lain-lain');
+
+    // Dua tarikh hanya jika Nikah & Sanding (2 hari)
+    const isTwoDay = val === 'Nikah & Sanding (2 hari)';
+    document.getElementById('tarikhMultiWrapper').style.display = isTwoDay ? 'block' : 'none';
+    document.getElementById('tarikhNikah').required = isTwoDay;
+    document.getElementById('tarikhSanding').required = isTwoDay;
+
+    // Tarikh tunggal digunakan jika bukan 2 hari
+    document.getElementById('tarikhSingleWrapper').style.display = isTwoDay ? 'none' : 'block';
+    document.getElementById('tarikhSingle').required = !isTwoDay;
+  }
+
+  function openWhatsApp(event) {
+    event.preventDefault();
+
+    const nama = document.getElementById('nama').value;
+    const majlisSelect = document.getElementById('majlis').value;
+    const majlisLain = document.getElementById('majlisLain').value;
+    const lokasi = document.getElementById('lokasi').value;
+    const majlis = (majlisSelect === 'Lain-lain') ? majlisLain : majlisSelect;
 
     let tarikh = "";
     if (majlisSelect === "Nikah & Sanding (2 hari)") {
-        const tarikhNikah = formatDate(document.getElementById('tarikhNikah').value);
-        const tarikhSanding = formatDate(document.getElementById('tarikhSanding').value);
-        tarikh = `Tarikh Nikah: ${tarikhNikah}\nTarikh Sanding: ${tarikhSanding}`;
+      const tarikhNikah = formatDate(document.getElementById('tarikhNikah').value);
+      const tarikhSanding = formatDate(document.getElementById('tarikhSanding').value);
+      tarikh = `Tarikh Nikah: ${tarikhNikah}\nTarikh Sanding: ${tarikhSanding}`;
     } else {
-        tarikh = `Tarikh: ${formatDate(document.getElementById('tarikh').value)}`;
+      const tarikhSingle = formatDate(document.getElementById('tarikhSingle').value);
+      tarikh = `Tarikh: ${tarikhSingle}`;
     }
 
     const message = `Nak Hire Photographer:\n\nNama: ${nama}\nEvent: ${majlis}\n${tarikh}\nLokasi: ${lokasi}`;
@@ -178,15 +183,15 @@
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
     window.open(whatsappUrl, '_blank');
-}
+  }
 
-	  function formatDate(input) {
+  function formatDate(input) {
     if (!input) return "";
     const parts = input.split("-");
     return `${parts[2]}-${parts[1]}-${parts[0]}`;
-}
+  }
+</script>
 
-  </script>
 
 </body>
 </html>
