@@ -42,117 +42,143 @@
     </header>
 
     <!-- WhatsApp Contact Form -->
-    <div class="whatsapp-form">
-        <h4>WhatsApp Form</h4>
+  <div class="whatsapp-form">
+    <h4>WhatsApp Form</h4>
+    <br>
+    <form id="whatsappForm" onsubmit="openWhatsApp(event)">
+
+      <!-- Nama -->
+      <label for="nama" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+        Nama
+      </label>
+      <input type="text" id="nama" required
+             style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+      <br>
+
+      <!-- Pilihan Majlis -->
+      <label for="majlis" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+        Jenis Majlis
+      </label>
+      <select id="majlis" required onchange="onMajlisChange()"
+          style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <option value="" disabled selected>Pilih jenis majlis…</option>
+        <option value="Harijadi">Harijadi</option>
+        <option value="Bertunang">Bertunang</option>
+        <option value="Nikah">Nikah</option>
+        <option value="Sanding">Sanding</option>
+        <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
+        <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
+        <option value="Outdoor">Outdoor</option>
+        <option value="Convo">Convo</option>
+        <option value="Personal Portrait">Personal Portrait</option>
+        <option value="Lain-lain">Lain-lain</option>
+      </select>
+      <br>
+
+      <!-- Nyatakan… hanya untuk Lain-lain -->
+      <div id="majlisLainWrapper" style="display:none; text-align:center;">
+        <label for="majlisLain" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          Nyatakan
+        </label>
+        <input type="text" id="majlisLain"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
         <br>
-        <form id="whatsappForm" onsubmit="openWhatsApp(event)">
-            <input type="text" id="nama" placeholder="Nama..." required><br>
+      </div>
 
-            <!-- dropdown majlis -->
-            <select id="majlis" required onchange="onMajlisChange()"
-                style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
-              <option value="" disabled selected>Event type...</option>
-              <option value="Harijadi">Harijadi</option>
-              <option value="Bertunang">Bertunang</option>
-              <option value="Nikah">Nikah</option>
-              <option value="Sanding">Sanding</option>
-              <option value="Nikah & Sanding (1 hari)">Nikah & Sanding (1 hari)</option>
-              <option value="Nikah & Sanding (2 hari)">Nikah & Sanding (2 hari)</option>
-              <option value="Outdoor">Outdoor</option>
-              <option value="Convo">Convo</option>
-              <option value="Personal Portrait">Personal Portrait</option>
-              <option value="Lain-lain">Lain-lain</option>
-            </select><br>
+      <!-- Single date picker -->
+      <div id="tarikhSingleWrapper" style="text-align:center;">
+        <label for="tarikhSingle" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          Tarikh
+        </label>
+        <input type="date" id="tarikhSingle"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <br>
+      </div>
 
-            <!-- input Lain-lain -->
-            <div id="majlisLainWrapper" style="display: none; text-align: center;">
-              <input type="text" id="majlisLain" placeholder="Nyatakan..."
-                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
-              <br>
-            </div>
+      <!-- Two date pickers for 2-day event -->
+      <div id="tarikhMultiWrapper" style="display:none; text-align:center;">
+        <label for="tarikhNikah" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          Tarikh Nikah
+        </label>
+        <input type="date" id="tarikhNikah"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:8px; border:2px solid #455A64; border-radius:5px;">
+        <br>
+        <label for="tarikhSanding" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          Tarikh Sanding
+        </label>
+        <input type="date" id="tarikhSanding"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <br>
+      </div>
 
-            <!-- single date picker -->
-            <div id="tarikhSingleWrapper" style="text-align: center;">
-              <input type="date" id="tarikhSingle" required
-                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;">
-              <br>
-            </div>
+      <!-- Lokasi -->
+      <label for="lokasi" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+        Lokasi
+      </label>
+      <input type="text" id="lokasi" required
+             style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+      <br><br>
 
-            <!-- two date pickers for 2-day event -->
-            <div id="tarikhMultiWrapper" style="display: none; text-align: center;">
-              <input type="date" id="tarikhNikah" required
-                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 8px; border: 2px solid #455A64; border-radius: 5px;"
-                     placeholder="Tarikh Nikah">
-              <br>
-              <input type="date" id="tarikhSanding" required
-                     style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px;"
-                     placeholder="Tarikh Sanding">
-              <br>
-            </div>
+      <button type="submit" class="btn">Hantar</button>
+    </form>
+  </div>
 
-            <input type="text" id="lokasi" placeholder="Lokasi..." required><br><br>
-
-            <button type="submit" class="btn">Hantar</button>
-        </form>
+  <footer>
+    <div class="social-links">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://api.whatsapp.com/send?text=Fyrus Photography%20https://ws.iamfyrus.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://telegram.me/share/url?url=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://x.com/intent/tweet?url=https://portfolio.iamfyrus.com&text=Check This Photographer Portfolio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
+    <br>
+    <div class="copyright">
+      &copy; <span id="year"></span> Fyrus Photography. All rights reserved.
+    </div>
+  </footer>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://api.whatsapp.com/send?text=Fyrus Photography%20https://ws.iamfyrus.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://telegram.me/share/url?url=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://x.com/intent/tweet?url=https://portfolio.iamfyrus.com&text=Check This Photographer Portfolio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
-        <br>
-        <div class="copyright">
-            &copy; <span id="year"></span> Fyrus Photography. All rights reserved.
-        </div>
-    </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+    function onMajlisChange() {
+      const val = document.getElementById('majlis').value;
+      // Nyatakan
+      document.getElementById('majlisLainWrapper').style.display = val === 'Lain-lain' ? 'block' : 'none';
+      document.getElementById('majlisLain').required = (val === 'Lain-lain');
+      // Dua tarikh
+      const isTwoDay = val === 'Nikah & Sanding (2 hari)';
+      document.getElementById('tarikhMultiWrapper').style.display = isTwoDay ? 'block' : 'none';
+      document.getElementById('tarikhNikah').required = isTwoDay;
+      document.getElementById('tarikhSanding').required = isTwoDay;
+      // Tarikh tunggal
+      document.getElementById('tarikhSingleWrapper').style.display = isTwoDay ? 'none' : 'block';
+      document.getElementById('tarikhSingle').required = !isTwoDay;
+    }
 
-      function onMajlisChange() {
-        const val = document.getElementById('majlis').value;
-        // Lain-lain
-        document.getElementById('majlisLainWrapper').style.display = val === 'Lain-lain' ? 'block' : 'none';
-        document.getElementById('majlisLain').required = (val === 'Lain-lain');
+    function openWhatsApp(e) {
+      e.preventDefault();
+      const nama = document.getElementById('nama').value;
+      const majlisVal = document.getElementById('majlis').value;
+      const majlisLain = document.getElementById('majlisLain').value;
+      const finalMajlis = majlisVal === 'Lain-lain' ? majlisLain : majlisVal;
 
-        // Nikah & Sanding (2 hari)
-        const multi = (val === 'Nikah & Sanding (2 hari)');
-        document.getElementById('tarikhMultiWrapper').style.display = multi ? 'block' : 'none';
-        document.getElementById('tarikhNikah').required = multi;
-        document.getElementById('tarikhSanding').required = multi;
-
-        // Single date for all other except multi
-        document.getElementById('tarikhSingleWrapper').style.display = multi ? 'none' : 'block';
-        document.getElementById('tarikhSingle').required = !multi;
+      let tarikhText;
+      if (majlisVal === 'Nikah & Sanding (2 hari)') {
+        const nikah = document.getElementById('tarikhNikah').value;
+        const sanding = document.getElementById('tarikhSanding').value;
+        tarikhText = `Tarikh Nikah: ${nikah}\nTarikh Sanding: ${sanding}`;
+      } else {
+        const single = document.getElementById('tarikhSingle').value;
+        tarikhText = `Tarikh: ${single}`;
       }
 
-      function openWhatsApp(e) {
-        e.preventDefault();
-        const nama = document.getElementById('nama').value;
-        const majlisVal = document.getElementById('majlis').value;
-        const majlisLain = document.getElementById('majlisLain').value;
-        let finalMajlis = majlisVal;
-        if (majlisVal === 'Lain-lain') finalMajlis = majlisLain;
+      const lokasi = document.getElementById('lokasi').value;
+      const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\n${tarikhText}\nLokasi: ${lokasi}`;
+      window.open(
+        `https://api.whatsapp.com/send?phone=60133340224&text=${encodeURIComponent(message)}`,
+        '_blank'
+      );
+    }
+  </script>
 
-        let tarikhStr = '';
-        if (majlisVal === 'Nikah & Sanding (2 hari)') {
-          const nikah = document.getElementById('tarikhNikah').value;
-          const sanding = document.getElementById('tarikhSanding').value;
-          tarikhStr = `Tarikh Nikah: ${nikah}\nTarikh Sanding: ${sanding}`;
-        } else {
-          const single = document.getElementById('tarikhSingle').value;
-          tarikhStr = `Tarikh: ${single}`;
-        }
-
-        const lokasi = document.getElementById('lokasi').value;
-        const message = `Nak Hire Photographer:\n\nNama: ${nama}\nMajlis: ${finalMajlis}\n${tarikhStr}\nLokasi: ${lokasi}`;
-        const phone = '60133340224';
-        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
-      }
-    </script>
 </body>
 </html>
