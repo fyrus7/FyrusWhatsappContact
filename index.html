@@ -42,16 +42,26 @@
     </header>
 
     <!-- WhatsApp Contact Form -->
-  <div class="whatsapp-form">
+<div class="whatsapp-form">
     <h4>WhatsApp Form</h4>
-    <br />
+    <br>
     <form id="whatsappForm" onsubmit="openWhatsApp(event)">
-      <label for="nama"><b> Nama:</b></label><br />
-      <input type="text" id="nama" required /><br />
 
-      <label for="event"><b> Jenis Event:</b></label><br />
-      <select id="event" required onchange="toggleEventOptions()" style="width: 90%; max-width: 600px; padding: 10px; margin-bottom: 10px; border: 2px solid #455A64; border-radius: 5px; background-color: white;">
-        <option value="" disabled selected>Sila pilih</option>
+      <!-- Nama -->
+      <label for="nama" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+        <b> Nama:</b>
+      </label>
+      <input type="text" id="nama" required
+             style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+      <br>
+
+      <!-- Pilihan Majlis -->
+      <label for="majlis" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+        <b> Jenis Event:</b>
+      </label>
+      <select id="majlis" required onchange="onMajlisChange()"
+          style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <option value="" disabled selected></option>
         <option value="Harijadi">Harijadi</option>
         <option value="Bertunang">Bertunang</option>
         <option value="Nikah">Nikah</option>
@@ -62,24 +72,52 @@
         <option value="Convo">Convo</option>
         <option value="Personal Portrait">Personal Portrait</option>
         <option value="Lain-lain">Lain-lain</option>
-      </select><br />
+      </select>
+      <br>
 
-      <input type="text" id="eventLain" placeholder="Nyatakan..." style="display: none;" /><br />
-
-      <div id="tarikhGroup">
-        <label for="tarikh"><b> Tarikh:</b></label><br />
-        <input type="date" id="tarikh" /><br />
+      <!-- Nyatakan… hanya untuk Lain-lain -->
+      <div id="majlisLainWrapper" style="display:none; text-align:center;">
+        <label for="majlisLain" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          <b> Nyatakan:</b>
+        </label>
+        <input type="text" id="majlisLain"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <br>
       </div>
 
-      <div id="tarikhDuaHari" style="display: none;">
-        <label for="tarikhNikah"><<b> Tarikh Nikah:</b></label><br />
-        <input type="date" id="tarikhNikah" /><br />
-        <label for="tarikhSanding"><b> Tarikh Sanding:</b></label><br />
-        <input type="date" id="tarikhSanding" /><br />
+      <!-- Single date picker -->
+      <div id="tarikhSingleWrapper" style="text-align:center;">
+        <label for="tarikhSingle" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          <b> Tarikh:</b>
+        </label>
+        <input type="date" id="tarikhSingle"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <br>
       </div>
 
-      <label for="lokasi"><b> Lokasi:</b></label><br />
-      <input type="text" id="lokasi" required /><br /><br />
+      <!-- Two date pickers for 2-day event -->
+      <div id="tarikhMultiWrapper" style="display:none; text-align:center;">
+        <label for="tarikhNikah" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          <b> Tarikh Nikah:</b>
+        </label>
+        <input type="date" id="tarikhNikah"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:8px; border:2px solid #455A64; border-radius:5px;">
+        <br>
+        <label for="tarikhSanding" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+          <b> Tarikh Sanding:</b>
+        </label>
+        <input type="date" id="tarikhSanding"
+               style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+        <br>
+      </div>
+
+      <!-- Lokasi -->
+      <label for="lokasi" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
+        <b>Lokasi:</b>
+      </label>
+      <input type="text" id="lokasi" required
+             style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
+      <br><br>
 
       <button type="submit" class="btn">Hantar</button>
     </form>
@@ -92,7 +130,7 @@
       <a href="https://telegram.me/share/url?url=https://ws.iamfyrus.com" target="_blank"><i class="fab fa-telegram"></i></a>
       <a href="https://x.com/intent/tweet?url=https://portfolio.iamfyrus.com&text=Check This Photographer Portfolio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
-    <br />
+    <br>
     <div class="copyright">
       &copy; <span id="year"></span> Fyrus Photography. All rights reserved.
     </div>
@@ -101,63 +139,46 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    function toggleEventOptions() {
-      const event = document.getElementById("event").value;
-      const eventLain = document.getElementById("eventLain");
-      const tarikhGroup = document.getElementById("tarikhGroup");
-      const tarikhDuaHari = document.getElementById("tarikhDuaHari");
-
-      // Lain-lain event input
-      eventLain.style.display = event === "Lain-lain" ? "block" : "none";
-      eventLain.required = event === "Lain-lain";
-
-      // Show/hide date input
-      if (event === "Nikah & Sanding (2 hari)") {
-        tarikhGroup.style.display = "none";
-        tarikhDuaHari.style.display = "block";
-        document.getElementById("tarikhNikah").required = true;
-        document.getElementById("tarikhSanding").required = true;
-        document.getElementById("tarikh").required = false;
-      } else {
-        tarikhGroup.style.display = "block";
-        tarikhDuaHari.style.display = "none";
-        document.getElementById("tarikhNikah").required = false;
-        document.getElementById("tarikhSanding").required = false;
-        document.getElementById("tarikh").required = true;
-      }
+    function onMajlisChange() {
+      const val = document.getElementById('majlis').value;
+      // Nyatakan
+      document.getElementById('majlisLainWrapper').style.display = val === 'Lain-lain' ? 'block' : 'none';
+      document.getElementById('majlisLain').required = (val === 'Lain-lain');
+      // Dua tarikh
+      const isTwoDay = val === 'Nikah & Sanding (2 hari)';
+      document.getElementById('tarikhMultiWrapper').style.display = isTwoDay ? 'block' : 'none';
+      document.getElementById('tarikhNikah').required = isTwoDay;
+      document.getElementById('tarikhSanding').required = isTwoDay;
+      // Tarikh tunggal
+      document.getElementById('tarikhSingleWrapper').style.display = isTwoDay ? 'none' : 'block';
+      document.getElementById('tarikhSingle').required = !isTwoDay;
     }
 
-    function formatDate(input) {
-      if (!input) return "";
-      const parts = input.split("-");
-      return `${parts[2]}-${parts[1]}-${parts[0]}`;
-    }
-
-    function openWhatsApp(event) {
-      event.preventDefault();
-
+    function openWhatsApp(e) {
+      e.preventDefault();
       const nama = document.getElementById('nama').value;
-      const eventSelect = document.getElementById('event').value;
-      const eventLain = document.getElementById('eventLain').value;
-      const lokasi = document.getElementById('lokasi').value;
+      const majlisVal = document.getElementById('majlis').value;
+      const majlisLain = document.getElementById('majlisLain').value;
+      const finalMajlis = majlisVal === 'Lain-lain' ? majlisLain : majlisVal;
 
-      const eventName = (eventSelect === 'Lain-lain') ? eventLain : eventSelect;
-
-      let tarikh = "";
-      if (eventSelect === "Nikah & Sanding (2 hari)") {
-        const tarikhNikah = formatDate(document.getElementById('tarikhNikah').value);
-        const tarikhSanding = formatDate(document.getElementById('tarikhSanding').value);
-        tarikh = `Tarikh Nikah: ${tarikhNikah}\nTarikh Sanding: ${tarikhSanding}`;
+      let tarikhText;
+      if (majlisVal === 'Nikah & Sanding (2 hari)') {
+        const nikah = document.getElementById('tarikhNikah').value;
+        const sanding = document.getElementById('tarikhSanding').value;
+        tarikhText = `Tarikh Nikah: ${nikah}\nTarikh Sanding: ${sanding}`;
       } else {
-        tarikh = `Tarikh: ${formatDate(document.getElementById('tarikh').value)}`;
+        const single = document.getElementById('tarikhSingle').value;
+        tarikhText = `Tarikh: ${single}`;
       }
 
-      const message = `Nak Hire Photographer:\n\nNama: ${nama}\nEvent: ${eventName}\n${tarikh}\nLokasi: ${lokasi}`;
-      const phoneNumber = '60133340224';
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-      window.open(whatsappUrl, '_blank');
+      const lokasi = document.getElementById('lokasi').value;
+      const message = `Nak Hire Photographer:\n\nNama: ${nama}\nEvent: ${finalMajlis}\n${tarikhText}\nLokasi: ${lokasi}`;
+      window.open(
+        `https://api.whatsapp.com/send?phone=60133340224&text=${encodeURIComponent(message)}`,
+        '_blank'
+      );
     }
   </script>
+
 </body>
 </html>
