@@ -49,7 +49,7 @@
 
       <!-- Nama -->
       <label for="nama" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-        Nama
+        <b> Nama</b>
       </label>
       <input type="text" id="nama" required
              style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
@@ -57,11 +57,11 @@
 
       <!-- Pilihan Majlis -->
       <label for="majlis" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-        Jenis Majlis
+        <b> Jenis Event</b>
       </label>
       <select id="majlis" required onchange="onMajlisChange()"
           style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
-        <option value="" disabled selected>Pilih jenis majlis…</option>
+        <option value="" disabled selected></option>
         <option value="Harijadi">Harijadi</option>
         <option value="Bertunang">Bertunang</option>
         <option value="Nikah">Nikah</option>
@@ -78,7 +78,7 @@
       <!-- Nyatakan… hanya untuk Lain-lain -->
       <div id="majlisLainWrapper" style="display:none; text-align:center;">
         <label for="majlisLain" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-          Nyatakan
+          <b> Nyatakan</b>
         </label>
         <input type="text" id="majlisLain"
                style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
@@ -88,7 +88,7 @@
       <!-- Single date picker -->
       <div id="tarikhSingleWrapper" style="text-align:center;">
         <label for="tarikhSingle" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-          Tarikh
+          <b> Tarikh</b>
         </label>
         <input type="date" id="tarikhSingle"
                style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
@@ -98,13 +98,13 @@
       <!-- Two date pickers for 2-day event -->
       <div id="tarikhMultiWrapper" style="display:none; text-align:center;">
         <label for="tarikhNikah" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-          Tarikh Nikah
+          <b> Tarikh Nikah</b>
         </label>
         <input type="date" id="tarikhNikah"
                style="width:90%; max-width:600px; padding:10px; margin-bottom:8px; border:2px solid #455A64; border-radius:5px;">
         <br>
         <label for="tarikhSanding" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-          Tarikh Sanding
+          <b> Tarikh Sanding</b>
         </label>
         <input type="date" id="tarikhSanding"
                style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
@@ -113,7 +113,7 @@
 
       <!-- Lokasi -->
       <label for="lokasi" style="display:block; margin:0 auto; width:90%; max-width:600px; text-align:left; color:#455A64; font-size:14px;">
-        Lokasi
+        <b> Lokasi</b>
       </label>
       <input type="text" id="lokasi" required
              style="width:90%; max-width:600px; padding:10px; margin-bottom:10px; border:2px solid #455A64; border-radius:5px;">
