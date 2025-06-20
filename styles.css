@@ -21,7 +21,7 @@ header {
     text-align: center;
     color: white;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 }
 
 .header-content {
@@ -31,10 +31,10 @@ header {
 /* Profile Pic */
 .profile-pic {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     height: auto;
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
 }
 
 
